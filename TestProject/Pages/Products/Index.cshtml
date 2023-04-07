@@ -1,0 +1,42 @@
+@page
+@model TestProject.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <form method="post" asp-page="importData">
+        <div class="d-flex justify-content-between mt-2 mb-4">
+            <h1 class="text-primary">Products</h1>
+            @*<a asp-page="importData" class="h-25 mt-3 pt-2 pb-2 btn btn-primary" />
+            <i class="bi bi-pencil-square"></i> &nbsp; Import Data*@
+            @*</a>*@
+        </div>
+        <button type="submit">Import</button>
+    </form>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Brand</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.products)
+            {
+                <tr>
+                    <td> @item.Id </td>
+                    <td> @item.product_name </td>
+                    <td> @item.brand </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
